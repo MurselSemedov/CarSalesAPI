@@ -1,7 +1,7 @@
 package com.mursalsamad.controller;
 
-import com.mursalsamad.dto.input.AddressInputDTO;
-import com.mursalsamad.dto.output.AddressOutputDTO;
+import com.mursalsamad.model.request.AddressInputDTO;
+import com.mursalsamad.model.response.AddressOutputDTO;
 
 import java.util.List;
 

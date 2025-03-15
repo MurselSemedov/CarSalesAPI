@@ -1,6 +1,6 @@
 package com.mursalsamad.config;
 
-import com.mursalsamad.repository.UserRepository;
+import com.mursalsamad.dao.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +20,7 @@ public class AppConfig {
 //        return new UserDetailsService(){
 //            public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 //                return userRepository.findByUsername(username);
-//            }
+//
 //        };
         return username -> userRepository.findByUsername(username).orElse(null);
     }

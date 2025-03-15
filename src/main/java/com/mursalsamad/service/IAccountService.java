@@ -1,7 +1,7 @@
 package com.mursalsamad.service;
 
-import com.mursalsamad.dto.input.AccountInputDTO;
-import com.mursalsamad.dto.output.AccountOutputDTO;
+import com.mursalsamad.model.request.AccountInputDTO;
+import com.mursalsamad.model.response.AccountOutputDTO;
 
 import java.util.List;
 

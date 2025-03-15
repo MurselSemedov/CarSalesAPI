@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public enum MessageType {
 
-    NO_RECORD_FOUND(1001,"The recort is not found"),
+    NO_RECORD_FOUND(1001,"The record is not found"),
     GENERAL_ERROR(9999,"Another error occurred");
 
     final Integer code;

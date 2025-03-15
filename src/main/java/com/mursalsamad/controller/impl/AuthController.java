@@ -1,7 +1,7 @@
 package com.mursalsamad.controller.impl;
 
 import com.mursalsamad.controller.IAuthController;
-import com.mursalsamad.dto.output.UserOutputDTO;
+import com.mursalsamad.model.response.UserOutputDTO;
 import com.mursalsamad.jwt.AuthRequest;
 import com.mursalsamad.jwt.AuthResponse;
 import com.mursalsamad.service.IAuthService;
