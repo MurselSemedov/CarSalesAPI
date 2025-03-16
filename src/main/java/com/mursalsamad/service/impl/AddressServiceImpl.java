@@ -8,8 +8,8 @@ import com.mursalsamad.exception.ErrorMessage;
 import com.mursalsamad.model.request.AddressInputDTO;
 import com.mursalsamad.model.response.AddressOutputDTO;
 import com.mursalsamad.service.IAddressService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -18,10 +18,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class AddressServiceImpl implements IAddressService {
 
-    @Autowired
-    AddressRepository addressRepository;
+    private final AddressRepository addressRepository;
 
     public List<AddressOutputDTO> findAll() {
         List<AddressEntity> list = addressRepository.findAll();

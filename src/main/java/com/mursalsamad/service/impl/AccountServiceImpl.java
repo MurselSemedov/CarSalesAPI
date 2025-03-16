@@ -9,37 +9,43 @@ import com.mursalsamad.model.enums.CurrencyType;
 import com.mursalsamad.model.request.AccountInputDTO;
 import com.mursalsamad.model.response.AccountOutputDTO;
 import com.mursalsamad.service.IAccountService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class AccountServiceImpl implements IAccountService {
 
-    @Autowired
-    private AccountRepository accountRepository;
+    private final AccountRepository accountRepository;
+
     public List<AccountOutputDTO> getAllAccount() {
-        List<AccountEntity> list = accountRepository.findAll();
-        List<AccountOutputDTO> accountDTO = new ArrayList<>();
-        for(AccountEntity accountEntity : list){
-            AccountOutputDTO outputDTO = new AccountOutputDTO();
-            BeanUtils.copyProperties(accountEntity,outputDTO);
-            accountDTO.add(outputDTO);
-        }
-        return accountDTO;
+        return accountRepository.findAll()
+                .stream()
+                .map(accountEntity -> AccountOutputDTO.builder()
+                 .cartNumber(accountEntity.getCartNumber())
+                 .amount(accountEntity.getAmount())
+                 .currencyType(accountEntity.getCurrencyType().name())
+                 .createDate(accountEntity.getCreateDate()).build()).
+                toList();
     }
 
-    public void saveAccount(AccountInputDTO inputDTO) {
+    @Transactional
+    public void saveAccount(AccountInputDTO inputDTO) throws Exception {
             AccountEntity accountEntity = new AccountEntity();
             BeanUtils.copyProperties(inputDTO, accountEntity);
             accountEntity.setCreateDate(LocalDate.now());
             accountEntity.setCurrencyType(CurrencyType.valueOf(inputDTO.getCurrencyType()));
             accountRepository.save(accountEntity);
+            //throw new Exception("errors");
+            /*Transaction is not working.
+            Because thrown Exception is not Runtime Exception.
+            Solution try catch{throw new Runtime Exception}*/
     }
 
     public AccountOutputDTO findById(long id) {

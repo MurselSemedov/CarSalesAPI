@@ -1,22 +1,25 @@
 package com.mursalsamad.dao.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
 
-@EqualsAndHashCode(onlyExplicitlyIncluded = true , callSuper = true)
+import static jakarta.persistence.GenerationType.IDENTITY;
+
 @Entity
 @Table(name = "customer")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CustomerEntity extends BaseEntity{
+public class CustomerEntity{
 
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    private long id;
+    private LocalDate createDate;
     private String firstName;
     private String lastName;
     @Column(unique = true)

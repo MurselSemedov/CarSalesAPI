@@ -5,7 +5,6 @@ import com.mursalsamad.model.request.AccountInputDTO;
 import com.mursalsamad.model.response.AccountOutputDTO;
 import com.mursalsamad.service.IAccountService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +15,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AccountController implements IAccountController {
 
-    @Autowired
     private final IAccountService accountService;
 
     @GetMapping("/list")
@@ -28,7 +26,7 @@ public class AccountController implements IAccountController {
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public void saveAccount(@RequestBody AccountInputDTO inputDTO) {
+    public void saveAccount(@RequestBody AccountInputDTO inputDTO) throws Exception {
         accountService.saveAccount(inputDTO);
     }
 

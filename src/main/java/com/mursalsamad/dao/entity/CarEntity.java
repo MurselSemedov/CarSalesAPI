@@ -2,33 +2,36 @@ package com.mursalsamad.dao.entity;
 
 import com.mursalsamad.model.enums.CarStatusType;
 import com.mursalsamad.model.enums.CurrencyType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+
+import static jakarta.persistence.EnumType.STRING;
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Table(name = "car")
+@Table(name = "cars")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CarEntity extends BaseEntity{
+@Builder
+public class CarEntity {
 
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    private long id;
+    private LocalDate createDate;
     private String licencePlate;
     private String brand;
     private String model;
     private Integer productionYear;
     private BigDecimal price;
-    @Enumerated(EnumType.STRING)
+    @Enumerated(STRING)
     private CurrencyType currencyType;
     private BigDecimal damagePrice;
-    @Enumerated(EnumType.STRING)
-    private CarStatusType carStatusType;
+    @Enumerated(STRING)
+    private CarStatusType carStatus;
 }

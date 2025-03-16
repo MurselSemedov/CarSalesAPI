@@ -1,24 +1,25 @@
 package com.mursalsamad.dao.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDate;
+
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "refresh_token")
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RefreshTokenEntity extends BaseEntity{
+public class RefreshTokenEntity{
 
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    private long id;
+    private LocalDate createDate;
     private String refreshToken;
     private LocalDate expireDate;
     @ManyToOne

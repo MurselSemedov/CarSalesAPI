@@ -9,7 +9,7 @@ public interface IAccountController {
 
     public List<AccountOutputDTO> getAllAccount();
 
-    public void saveAccount(AccountInputDTO inputDTO);
+    public void saveAccount(AccountInputDTO inputDTO) throws Exception;
 
     public AccountOutputDTO findById(long id);
 

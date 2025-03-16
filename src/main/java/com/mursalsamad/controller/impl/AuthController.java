@@ -1,11 +1,11 @@
 package com.mursalsamad.controller.impl;
 
 import com.mursalsamad.controller.IAuthController;
-import com.mursalsamad.model.response.UserOutputDTO;
 import com.mursalsamad.jwt.AuthRequest;
 import com.mursalsamad.jwt.AuthResponse;
+import com.mursalsamad.model.response.UserOutputDTO;
 import com.mursalsamad.service.IAuthService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/rest/api")
+@RequiredArgsConstructor
 public class AuthController implements IAuthController {
 
-    @Autowired
-    private IAuthService authService;
+    private final IAuthService authService;
 
     @PostMapping("/register")
     public UserOutputDTO register(@RequestBody AuthRequest request) {
