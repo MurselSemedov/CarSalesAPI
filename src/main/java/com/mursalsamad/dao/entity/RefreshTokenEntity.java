@@ -8,10 +8,11 @@ import java.time.LocalDate;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Table(name = "refresh_token")
+@Table(name = "refresh_tokens")
 @Getter
 @Setter
 @Builder
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class RefreshTokenEntity{
@@ -23,5 +24,6 @@ public class RefreshTokenEntity{
     private String refreshToken;
     private LocalDate expireDate;
     @ManyToOne
+    @ToString.Exclude
     private UserEntity userEntity;
 }

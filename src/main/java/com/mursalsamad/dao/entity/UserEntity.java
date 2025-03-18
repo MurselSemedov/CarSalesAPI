@@ -28,6 +28,7 @@ public class UserEntity implements UserDetails {
     private long id;
     private LocalDate createDate;
     private String username;
+    private String email;
     private String password;
 
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -5,14 +5,17 @@ import lombok.*;
 
 import java.time.LocalDate;
 
+import static jakarta.persistence.CascadeType.MERGE;
+import static jakarta.persistence.CascadeType.PERSIST;
+import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Table(name = "saled_car" , uniqueConstraints = @UniqueConstraint(
-        columnNames = {"car_id"},name = "uq_dealer_car_customer"))
+@Table(name = "saled_cars")
 @Getter
 @Setter
 @Builder
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class SaledCarEntity{
@@ -21,10 +24,17 @@ public class SaledCarEntity{
     @GeneratedValue(strategy = IDENTITY)
     private long id;
     private LocalDate createDate;
-    @ManyToOne
-    private DealerEntity dealerEntity;
-    @ManyToOne
-    private CarEntity carEntity;
-    @ManyToOne
-    private CustomerEntity customerEntity;
+
+    @ManyToOne(fetch = LAZY)
+    @ToString.Exclude
+    private DealerEntity dealer;
+
+    @ToString.Exclude
+    @OneToOne(fetch = LAZY,cascade = {PERSIST,MERGE})
+    @JoinColumn(referencedColumnName = "id",unique = true)
+    private CarEntity car;
+
+    @ToString.Exclude
+    @ManyToOne(fetch = LAZY)
+    private CustomerEntity customer;
 }

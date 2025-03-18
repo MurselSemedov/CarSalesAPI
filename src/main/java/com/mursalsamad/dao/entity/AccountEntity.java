@@ -9,21 +9,31 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 import static jakarta.persistence.EnumType.STRING;
-import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "accounts")
 @Setter
 @Getter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class AccountEntity{
 
     @Id
-    @GeneratedValue(strategy = IDENTITY)
     private long id;
     private LocalDate createDate;
+    private String cartNumber;
+    private BigDecimal amount;
+
+    @Enumerated(STRING)
+    private CurrencyType currencyType;
+
+    @MapsId
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id")
+    @ToString.Exclude
+    private CustomerEntity customer;
 
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -34,11 +44,5 @@ public class AccountEntity{
     public int hashCode() {
         return Objects.hashCode(id);
     }
-
-    private String cartNumber;
-    private BigDecimal amount;
-    @Enumerated(STRING)
-    private CurrencyType currencyType;
-
 
 }

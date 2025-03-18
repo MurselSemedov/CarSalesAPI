@@ -1,9 +1,6 @@
 package com.mursalsamad.dao.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -24,10 +21,10 @@ public class AddressEntity{
     @GeneratedValue(strategy = IDENTITY)
     private long id;
     private LocalDate createDate;
-    private String city;
-    private String district;
-    private String village;
-    private String street;
+    private String city; //Baku
+    private String district; //Surakhani
+    private String village; //Hovsan
+    private String street; //Ibish Mammadov kuchesi
 
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;

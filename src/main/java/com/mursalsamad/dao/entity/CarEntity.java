@@ -9,12 +9,14 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import static jakarta.persistence.EnumType.STRING;
+import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "cars")
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -34,4 +36,8 @@ public class CarEntity {
     private BigDecimal damagePrice;
     @Enumerated(STRING)
     private CarStatusType carStatus;
+
+    @ManyToOne(fetch = LAZY)
+    @ToString.Exclude
+    private DealerEntity dealer;
 }

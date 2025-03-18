@@ -55,6 +55,7 @@ public class AccountServiceImpl implements IAccountService {
         return outputDTO;
     }
 
+//    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void updateAccount(long id, AccountInputDTO inputDTO) {
         Optional<AccountEntity> optional = accountRepository.findById(id);
         if(optional.isPresent()){
